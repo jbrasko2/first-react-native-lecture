@@ -1,10 +1,13 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import ImageCard from './components/ImageCard'
 
 const ImageScreen = () => {
   return (
     <View>
-      <Text style={styles.textStyle}>Image Screen</Text>
+      <ImageCard />
+      <ImageCard />
+      <ImageCard />
     </View>
   )
 }
