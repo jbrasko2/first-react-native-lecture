@@ -9,16 +9,19 @@ const ImageScreen = () => {
         title='Forest'
         style={styles.textStyle}
         imageSrc={require('../../assets/forest.jpg')}
+        score='4'
       />
       <ImageCard
         title='Beach'
         style={styles.textStyle}
         imageSrc={require('../../assets/beach.jpg')}
+        score='10'
       />
       <ImageCard
         title='Mountain'
         style={styles.textStyle}
         imageSrc={require('../../assets/mountain.jpg')}
+        score='5'
       />
     </View>
   )
