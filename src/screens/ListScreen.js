@@ -14,10 +14,10 @@ const ListScreen = () => {
 
   return (
     <FlatList
+      data={friends}
+      keyExtractor={friend => friend.name}
       horizontal //horizontal={true}
       showsHorizontalScrollIndicator={false}
-      keyExtractor={friend => friend.name}
-      data={friends}
       renderItem={({ item }) => {
         return (
           <Text style={styles.textStyle}>
