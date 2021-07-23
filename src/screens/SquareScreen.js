@@ -1,46 +1,45 @@
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import ColorAdjuster from '../components/ColorAdjuster'
 
-const SquareScreen = () => {
-  const [red, setRed] = useState(0)
-  const [green, setGreen] = useState(0)
-  const [blue, setBlue] = useState(0)
+const reducer = (state, action) => {
+  // state === { red: number, green: number, blue: number}
+  // action === { colorToChange: 'red' || 'grean' || 'blue', amount: 15 || -15 }
 
-  const setColor = (color, change) => {
-    switch (color) {
-      case 'red':
-        red + change > 255 || red + change < 0 ? null : setRed(red + change)
-        return
-      case 'green':
-        green + change > 255 || green + change < 0
-          ? null
-          : setGreen(green + change)
-        return
-      case 'blue':
-        blue + change > 255 || blue + change < 0 ? null : setBlue(blue + change)
-        return
-      default:
-        return
-    }
+  switch (action.colorToChange) {
+    case 'red':
+      // never going to do:
+      // state.red = state.red - 15
+      return { ...state, red: state.red + action.amount }
+    case 'green':
+      return { ...state, green: state.green + action.amount }
+    case 'blue':
+      return { ...state, blue: state.blue + action.amount }
+    default:
+      return state
   }
+}
+
+const SquareScreen = () => {
+  const [state, dispatch] = useReducer(reducer, { red: 0, green: 0, blue: 0 })
+  const { red, green, blue } = state
 
   return (
     <View>
       <ColorAdjuster
         color='Red'
-        onIncrease={() => setColor('red', 15)}
-        onDecrease={() => setColor('red', -15)}
+        onIncrease={() => dispatch({ colorToChange: 'red', amount: 15 })}
+        onDecrease={() => dispatch({ colorToChange: 'red', amount: -15 })}
       />
       <ColorAdjuster
         color='Green'
-        onIncrease={() => setColor('green', 15)}
-        onDecrease={() => setColor('green', -15)}
+        onIncrease={() => dispatch({ colorToChange: 'green', amount: 15 })}
+        onDecrease={() => dispatch({ colorToChange: 'green', amount: -15 })}
       />
       <ColorAdjuster
         color='Blue'
-        onIncrease={() => setColor('blue', 15)}
-        onDecrease={() => setColor('blue', -15)}
+        onIncrease={() => dispatch({ colorToChange: 'blue', amount: 15 })}
+        onDecrease={() => dispatch({ colorToChange: 'blue', amount: -15 })}
       />
       <View
         style={{
