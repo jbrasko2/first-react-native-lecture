@@ -56,7 +56,7 @@ const SquareScreen = () => {
         }}
       />
       <Text>
-        rbg({red}, {green}, {blue})
+        rgb({red}, {green}, {blue})
       </Text>
     </View>
   )
