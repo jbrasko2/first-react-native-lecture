@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { Children } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { floor } from 'react-native-reanimated'
 
 const BoxScreen = () => {
   return (
-    <View style={styles.viewStyle}>
-      <Text style={styles.textOneStyle}>Child 1</Text>
-      <Text style={styles.textTwoStyle}>Child 2</Text>
-      <Text style={styles.textThreeStyle}>Child 3</Text>
+    <View>
+      <View style={styles.headerStyle}>
+        <Text style={styles.headerText}>App</Text>
+      </View>
+      <View style={styles.boxContainer}>
+        <View style={styles.boxOneStyle} />
+        <View style={styles.boxTwoStyle} />
+        <View style={styles.boxThreeStyle} />
+      </View>
     </View>
   )
 }
@@ -14,26 +20,42 @@ const BoxScreen = () => {
 export default BoxScreen
 
 const styles = StyleSheet.create({
-  viewStyle: {
+  headerStyle: {
+    height: 100,
     borderWidth: 3,
     borderColor: 'black',
-    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  textOneStyle: {
+  headerText: {
+    fontSize: 36,
+  },
+  boxContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  boxOneStyle: {
+    height: 75,
+    width: 100,
     borderWidth: 3,
     borderColor: 'red',
-    flex: 4,
-    alignSelf: 'center'
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgb(255, 200, 200)'
   },
-  textTwoStyle: {
+  boxTwoStyle: {
     borderWidth: 3,
-    borderColor: 'red',
-    position: 'absolute'
+    borderColor: 'green',
+    height: 75,
+    width: 100,
+    top: 75,
+    backgroundColor: 'rgb(200, 255, 200)'
   },
-  textThreeStyle: {
+  boxThreeStyle: {
+    height: 75,
+    width: 100,
     borderWidth: 3,
-    borderColor: 'red',
-    flex: 2,
-    alignSelf: 'center'
+    borderColor: 'purple',
+    alignSelf: 'flex-end',
+    backgroundColor: 'rgb(200, 200, 255)'
   },
 })
